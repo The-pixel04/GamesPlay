@@ -1,3 +1,25 @@
+const request = async (method, url, body) => {
+    let options = {};
+    if(method !== 'GET') {
+        options = {
+            method,
+        };
+    }
+
+    if(data) {
+        options={
+            ...options,
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        }
+    }
+
+    const response = await fetch(url, options);;
+    const result = await response.json();
+    return result;
+}
 export default {
     get: request.bind(null, 'GET'),
     post: request.bind(null, 'POST'),
