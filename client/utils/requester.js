@@ -1,4 +1,4 @@
-const request = async (method, url, body) => {
+const request = async (method, url, data) => {
     let options = {};
     if(method !== 'GET') {
         options = {

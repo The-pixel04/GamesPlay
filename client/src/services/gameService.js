@@ -5,5 +5,11 @@ const baseUrl = 'http://localhost:3030/jsonstore/games';
 export default {
     create(gameData) {
         return requester.post(baseUrl, gameData);
-    }
+    },
+    async getAll() {
+        const result = await requester.get(baseUrl);
+
+        const games = Object.values(result);
+        return games;
+    },
 }
