@@ -1,2 +1,8 @@
 # Google App Engine generated folder
 appengine-generated/
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+package-lock.json
