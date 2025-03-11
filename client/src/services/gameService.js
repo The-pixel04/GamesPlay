@@ -18,5 +18,8 @@ export default {
     },
     async deleteGame(id) {
         return requester.delete(`${baseUrl}/${id}`);
+    },
+    async edit(id, gameData) {
+        return requester.put(`${baseUrl}/${id}`, { ...gameData, _id: id });
     }
 }
