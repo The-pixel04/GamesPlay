@@ -7,6 +7,7 @@ import Login from './components/login/Login.jsx'
 import Register from './components/register/Register.jsx'
 import GameCreate from './components/gameCrete/GameCreate.jsx'
 import GameCatalog from './components/catalog/Catalog.jsx'
+import GameDetails from './components/gameDetails/GameDetails.jsx'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -22,6 +23,7 @@ function App() {
           <Route path='/register' element={<Register />} />
           <Route path='/games/create' element={<GameCreate />} />
           <Route path='/games' element={<GameCatalog/>} />
+          <Route path='/games/:gameId/details' element={<GameDetails/>} />
         </Routes>
       </main>
     </div>
