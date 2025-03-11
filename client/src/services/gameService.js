@@ -16,4 +16,7 @@ export default {
         const game = requester.get(`${baseUrl}/${id}`);
         return game;
     },
+    async deleteGame(id) {
+        return requester.delete(`${baseUrl}/${id}`);
+    }
 }

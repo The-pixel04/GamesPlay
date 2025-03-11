@@ -1,15 +1,28 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router";
+import { Link, useParams, useNavigate } from "react-router";
 import gameService from "../../services/gameService.js";
 
 export default function GameDetails() {
     const { gameId } = useParams();
     const [game, setGame] = useState({});
+    const navigate = useNavigate();
 
     useEffect(() => {
         gameService.getOne(gameId)
             .then(game => setGame(game));
     }, [gameId]);
+
+    const deleteHandler = async () => {
+        const hasConfirm = confirm(`Are you sure you want to delete ${game.title} game?`);
+
+        if (!hasConfirm) {
+            return;
+        };
+
+        await gameService.deleteGame(gameId);
+
+        navigate('/games');
+    };
 
     return (
         <section id="game-details">
@@ -19,7 +32,7 @@ export default function GameDetails() {
                 <div className="game-header">
                     <img className="game-img" src={game.imageUrl} />
                     <h1>{game.title}</h1>
-                    <span className="levels">MaxLevel: {game.maxLevell}</span>
+                    <span className="levels">MaxLevel: {game.maxLevel}</span>
                     <p className="type">{game.category}</p>
                 </div>
 
@@ -45,8 +58,8 @@ export default function GameDetails() {
 
                 {/* <!-- Edit/Delete buttons ( Only for creator of this game )  --> */}
                 <div className="buttons">
-                    <a href="#" className="button">Edit</a>
-                    <a href="#" className="button">Delete</a>
+                    <Link to="#" className="button">Edit</Link>
+                    <button onClick={deleteHandler} className="button">Delete</button>
                 </div>
             </div>
 
