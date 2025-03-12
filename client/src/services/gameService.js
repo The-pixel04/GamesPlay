@@ -1,4 +1,4 @@
-import requester from "../../utils/requester.js";
+import requester from "../utils/requester.js";
 
 const baseUrl = 'http://localhost:3030/jsonstore/games';
 
