@@ -4,7 +4,7 @@ import gameService from "../../services/gameService.js";
 import CommentsShow from "../commentsShow/CommentsShow.jsx";
 import CommentsCreate from "../commentsCrete/commentsCreate.jsx";
 
-export default function GameDetails() {
+export default function GameDetails({ email }) {
     const { gameId } = useParams();
     const [game, setGame] = useState({});
     const navigate = useNavigate();
@@ -43,7 +43,7 @@ export default function GameDetails() {
                 </p>
 
                 {/* <!-- Bonus ( for Guests and Users ) --> */}
-                <CommentsShow/>
+                <CommentsShow />
 
                 {/* <!-- Edit/Delete buttons ( Only for creator of this game )  --> */}
                 <div className="buttons">
@@ -52,7 +52,7 @@ export default function GameDetails() {
                 </div>
             </div>
 
-            <CommentsCreate/>
+            <CommentsCreate email={email} />
         </section>
     )
 }
