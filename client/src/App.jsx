@@ -11,7 +11,11 @@ import GameDetails from './components/gameDetails/GameDetails.jsx'
 import GameEdit from './components/gameEdit/GameEdit.jsx'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [email, setEmail] = useState('');
+
+  const userLoginHandler = (email) => {
+    setEmail(email);
+  }
 
   return (
     <div id="box">
@@ -20,7 +24,7 @@ function App() {
       <main id="main-content">
         <Routes>
           <Route path='/' element={<Home />} />
-          <Route path='/login' element={<Login />} />
+          <Route path='/login' element={<Login onLogin={userLoginHandler}/>} />
           <Route path='/register' element={<Register />} />
           <Route path='/games/create' element={<GameCreate />} />
           <Route path='/games' element={<GameCatalog />} />
