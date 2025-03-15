@@ -31,6 +31,10 @@ export default function GameDetails({ email }) {
         navigate('/games');
     };
 
+    const commentsCreaeHandler = (comment) => {
+        setComments((prevState) => [...prevState, comment]);
+    };
+
     return (
         <section id="game-details">
             <h1>Game Details</h1>
@@ -57,7 +61,7 @@ export default function GameDetails({ email }) {
                 </div>
             </div>
 
-            <CommentsCreate email={email} gameId={gameId} />
+            <CommentsCreate email={email} gameId={gameId} onCrete={commentsCreaeHandler} />
         </section>
     )
 }
