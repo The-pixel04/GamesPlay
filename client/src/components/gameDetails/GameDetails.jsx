@@ -1,14 +1,16 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Link, useParams, useNavigate } from "react-router";
 import gameService from "../../services/gameService.js";
 import CommentsShow from "../commentsShow/CommentsShow.jsx";
 import CommentsCreate from "../commentsCrete/commentsCreate.jsx";
 import commentsService from "../../services/commentsService.js";
+import { UserContext } from "../../contexts/UserContext.js";
 
-export default function GameDetails({ email }) {
+export default function GameDetails() {
     const { gameId } = useParams();
     const [game, setGame] = useState({});
     const [comments, setComments] = useState([]);
+    const { email } = useContext(UserContext)
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -52,7 +54,7 @@ export default function GameDetails({ email }) {
                 </p>
 
                 {/* <!-- Bonus ( for Guests and Users ) --> */}
-                <CommentsShow comments={comments}/>
+                <CommentsShow comments={comments} />
 
                 {/* <!-- Edit/Delete buttons ( Only for creator of this game )  --> */}
                 <div className="buttons">
