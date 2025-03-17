@@ -2,6 +2,7 @@ import { useEffect, useRef } from "react";
 import requester from "../utils/requester.js"
 import { useContext } from "react";
 import { UserContext } from "../contexts/UserContext.js";
+import { useLinkClickHandler } from "react-router";
 
 const baseUrl = 'http://localhost:3030/users'
 
@@ -36,16 +37,24 @@ export const useRegister = () => {
 };
 
 export const useLogout = () => {
-    const {accessToken} = useContext(UserContext);
-
-    const options = {
-        headers: {
-            'X-Authorization': accessToken
+    const { accessToken , userLogoutHandler} = useContext(UserContext);
+    useEffect(() => {
+        if(!accessToken){
+            return;
         }
-    }
-    const logout = () => requester.get(`${baseUrl}/logout`, null, options);
+        const options = {
+            headers: {
+                'X-Authorization': accessToken
+            }
+        };
 
-    return {
-        logout
+        requester.get(`${baseUrl}/logout`, null, options)
+            .then(() => {
+                userLogoutHandler
+            })
+    }, [accessToken, userLogoutHandler]);
+
+    return{
+        isLoggedOut: !!accessToken
     }
 };
