@@ -4,7 +4,7 @@ import requester from "../utils/requester.js"
 const baseUrl = 'http://localhost:3030/users'
 
 export const useLogin = () => {
-    const abortRef  = useRef(new AbortController())
+    const abortRef = useRef(new AbortController());
 
     const login = async (email, password) => {
         const result = await requester.post(`${baseUrl}/login`, { email, password }, { signal: abortRef.current.signal });
@@ -14,11 +14,21 @@ export const useLogin = () => {
 
     useEffect(() => {
         const abortController = abortRef.current;
-        
+
         return () => abortController.abort();
-    },[]);
+    }, []);
 
     return {
         login
     }
-}
+};
+
+export const useRegister = () => {
+    const register = (email, password) => {
+        return requester.post(`${baseUrl}/register`, { email, password });
+    }
+
+    return {
+        register
+    }
+};
