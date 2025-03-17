@@ -12,9 +12,10 @@ import GameEdit from './components/gameEdit/GameEdit.jsx'
 
 function App() {
   const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-  const userLoginHandler = (email) => {
-    setEmail(email);
+  const userLoginHandler = (authData) => {
+    setEmail(authData.email);
   }
 
   return (

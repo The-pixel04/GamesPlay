@@ -7,9 +7,9 @@ export default {
         return requester.post(`${baseUrl}`, { email, gameId, comment });
     },
     async getAll(gameId) {
-       const comments = await requester.get(`${baseUrl}`);
+        const comments = await requester.get(`${baseUrl}`);
 
-       const gameComments =  Object.values(comments).filter(c => c.gameId === gameId);
-       return gameComments;
+        const gameComments = Object.values(comments).filter(c => c.gameId === gameId);
+        return gameComments;
     }
 };

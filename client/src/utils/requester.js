@@ -1,13 +1,10 @@
-const request = async (method, url, data) => {
-    let options = {};
-    if(method !== 'GET') {
-        options = {
-            method,
-        };
+const request = async (method, url, data, options = {}) => {
+    if (method !== 'GET') {
+        options.method = method
     }
 
-    if(data) {
-        options={
+    if (data) {
+        options = {
             ...options,
             headers: {
                 'Content-Type': 'application/json'
