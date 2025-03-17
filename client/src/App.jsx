@@ -11,12 +11,11 @@ import GameDetails from './components/gameDetails/GameDetails.jsx'
 import GameEdit from './components/gameEdit/GameEdit.jsx'
 
 function App() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [authData, setAuthData] = useState({});
 
-  const userLoginHandler = (authData) => {
-    setEmail(authData.email);
-  }
+  const userLoginHandler = (resultData) => {
+    setAuthData(resultData);
+  };
 
   return (
     <div id="box">
@@ -25,11 +24,11 @@ function App() {
       <main id="main-content">
         <Routes>
           <Route path='/' element={<Home />} />
-          <Route path='/login' element={<Login onLogin={userLoginHandler}/>} />
+          <Route path='/login' element={<Login onLogin={userLoginHandler} />} />
           <Route path='/register' element={<Register />} />
           <Route path='/games/create' element={<GameCreate />} />
           <Route path='/games' element={<GameCatalog />} />
-          <Route path='/games/:gameId/details' element={<GameDetails email={email}/>} />
+          <Route path='/games/:gameId/details' element={<GameDetails email={authData.email} />} />
           <Route path='/games/:gameId/edit' element={<GameEdit />} />
         </Routes>
       </main>
