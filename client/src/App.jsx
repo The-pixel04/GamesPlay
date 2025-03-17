@@ -10,6 +10,7 @@ import GameCatalog from './components/catalog/Catalog.jsx'
 import GameDetails from './components/gameDetails/GameDetails.jsx'
 import GameEdit from './components/gameEdit/GameEdit.jsx'
 import { UserContext } from './contexts/UserContext.js'
+import Logout from './components/logout/Logout.jsx'
 
 function App() {
   const [authData, setAuthData] = useState({});
@@ -28,6 +29,7 @@ function App() {
             <Route path='/' element={<Home />} />
             <Route path='/login' element={<Login />} />
             <Route path='/register' element={<Register />} />
+            <Route path='/logout' element={<Logout />} />
             <Route path='/games/create' element={<GameCreate />} />
             <Route path='/games' element={<GameCatalog />} />
             <Route path='/games/:gameId/details' element={<GameDetails />} />
