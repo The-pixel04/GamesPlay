@@ -13,7 +13,6 @@ export default function Login({ onLogin }) {
         onLogin(authData);
 
         navigate('/games');
-        console.log(formValues)
         return formValues
     };
 
