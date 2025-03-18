@@ -4,12 +4,6 @@ import requester from "../utils/requester.js";
 const baseUrl = 'http://localhost:3030/data/games';
 
 export default {
-
-
-    async getOne(id) {
-        const game = requester.get(`${baseUrl}/${id}`);
-        return game;
-    },
     async deleteGame(id) {
         return requester.delete(`${baseUrl}/${id}`);
     },
@@ -37,7 +31,19 @@ export const useGames = () => {
     }, []);
 
     return {
-        games,
-        setGames
+        games
+    }
+};
+
+export const useGame = (gameId) => {
+    const [game, setGame] = useState({});
+
+    useEffect(() => {
+        requester.get(`${baseUrl}/${gameId}`)
+            .then(setGame)
+    }, [gameId]);
+
+    return {
+        game
     }
 };

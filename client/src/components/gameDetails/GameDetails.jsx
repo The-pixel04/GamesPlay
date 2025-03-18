@@ -5,18 +5,16 @@ import CommentsShow from "../commentsShow/CommentsShow.jsx";
 import CommentsCreate from "../commentsCrete/commentsCreate.jsx";
 import commentsService from "../../services/commentsService.js";
 import { UserContext } from "../../contexts/UserContext.js";
+import { useGame } from "../../api/gamesApi.js";
 
 export default function GameDetails() {
     const { gameId } = useParams();
-    const [game, setGame] = useState({});
+    const { game } = useGame(gameId)
     const [comments, setComments] = useState([]);
     const { email } = useContext(UserContext)
     const navigate = useNavigate();
 
     useEffect(() => {
-        gameService.getOne(gameId)
-            .then(game => setGame(game));
-
         commentsService.getAll(gameId)
             .then(comments => setComments(comments));
     }, [gameId]);
