@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import requester from "../utils/requester.js";
+import useAuth from "../hooks/useAuth.js";
 
 const baseUrl = 'http://localhost:3030/data/games';
 
@@ -7,14 +8,14 @@ export default {
     async deleteGame(id) {
         return requester.delete(`${baseUrl}/${id}`);
     },
-    async edit(id, gameData) {
-        return requester.put(`${baseUrl}/${id}`, { ...gameData, _id: id });
-    }
+
 }
 
 export const useCreateGame = () => {
+    const { request } = useAuth();
+
     const create = (gameData) => {
-        return requester.post(baseUrl, gameData);
+        return request.post(baseUrl, gameData);
     }
 
     return {
@@ -47,3 +48,27 @@ export const useGame = (gameId) => {
         game
     }
 };
+
+export const useEditGame = () => {
+    const { request } = useAuth();
+
+    const edit = (id, gameData) => {
+        return request.put(`${baseUrl}/${id}`, { ...gameData, _id: id });
+    };
+
+    return {
+        edit
+    }
+}
+
+export const useDeleteGame = () => {
+    const { request } = useAuth();
+
+    const deleteGame = (gameData) => {
+        return request.delete({ baseUrl }, gameData);
+    };
+
+    return {
+        deleteGame
+    }
+}
