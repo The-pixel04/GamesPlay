@@ -1,15 +1,11 @@
+import { useEffect, useState } from "react";
 import requester from "../utils/requester.js";
 
 const baseUrl = 'http://localhost:3030/data/games';
 
 export default {
 
-    async getAll() {
-        const result = await requester.get(baseUrl);
 
-        const games = Object.values(result);
-        return games;
-    },
     async getOne(id) {
         const game = requester.get(`${baseUrl}/${id}`);
         return game;
@@ -30,4 +26,18 @@ export const useCreateGame = () => {
     return {
         create
     }
-}
+};
+
+export const useGames = () => {
+    const [games, setGames] = useState([]);
+
+    useEffect(() => {
+        requester.get(baseUrl)
+            .then(result => setGames(result))
+    }, []);
+
+    return {
+        games,
+        setGames
+    }
+};
