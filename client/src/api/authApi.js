@@ -2,7 +2,6 @@ import { useEffect, useRef } from "react";
 import requester from "../utils/requester.js"
 import { useContext } from "react";
 import { UserContext } from "../contexts/UserContext.js";
-import { useLinkClickHandler } from "react-router";
 
 const baseUrl = 'http://localhost:3030/users'
 

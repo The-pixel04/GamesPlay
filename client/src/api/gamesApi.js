@@ -59,7 +59,7 @@ export const useEditGame = () => {
     return {
         edit
     }
-}
+};
 
 export const useDeleteGame = () => {
     const { request } = useAuth();
@@ -70,5 +70,22 @@ export const useDeleteGame = () => {
 
     return {
         deleteGame
+    }
+};
+
+export  const useLatestGames=()=>{
+    const [latestGames, setLatestGames] = useState([]);
+
+    useEffect(() => {
+        const searchParams = new URLSearchParams({
+            sortBy: 'createdOn desc',
+            pageSize:3
+        })
+        requester.get(`${baseUrl}?${searchParams.toString()}`)
+            .then(result => setLatestGames(result))
+    }, []);
+
+    return {
+        latestGames
     }
 }
